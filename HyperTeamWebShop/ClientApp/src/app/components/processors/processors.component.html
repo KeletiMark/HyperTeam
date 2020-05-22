@@ -1,0 +1,81 @@
+<h1 class="text-center" id="tableLabel">Processors</h1>
+<p *ngIf="!processors"><em>Loading...</em></p>
+<ng-container *ngIf="processors">
+
+  <div class="mb-3">
+    <button class="btn btn-primary fa fa-list mr-2" (click)="setViewList()"></button>
+    <button class="btn btn-primary fa fa-th mr-2" (click)="setViewCard()"></button>
+    <button class="btn btn-primary fa fa-table mr-2" (click)="setViewTable()"></button>
+    <button class="btn btn-primary" routerLink="/processors/new">Add new</button>
+  </div>
+
+  <ng-container *ngIf="view=='table'">
+    <table class='table table-striped box-shadow' aria-labelledby="tableLabel">
+      <thead>
+        <tr>
+          <th>Cores</th>
+          <th>Socket Type</th>
+          <th>Clock Frequency</th>
+          <th>L3 Cache Size</th>
+          <th>SMT Support</th>
+          <th>Manufacturer</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let processor of processors">
+          <td>{{ processor.cores }}</td>
+          <td>{{ processor.socketType }}</td>
+          <td>{{ processor.clockFrequency }} MHz</td>
+          <td>{{ processor.l3CacheSize }} MB</td>
+          <td>{{ processor.smtSupport }}</td>
+          <td>{{ processor.manufacturer }}</td>
+          <td>{{ processor.price }} Ft</td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+
+  <ng-container *ngIf="view=='card'">
+    <div class="conatiner">
+      <div class="row">
+        <ng-container *ngFor="let processor of processors">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <a routerLink="/processors/{{processor.id}}">
+              <div class="text-center box-shadow mb-3 pb-3">
+                <div>
+                  <img src="assets/{{processor.imgURL}}" style="width:100%;height:100%;border:solid 1px black">
+                </div>
+                <div>{{ processor.cores }}</div>
+                <div>{{ processor.socketType }}</div>
+                <div>{{ processor.manufacturer }}</div>
+                <div>{{ processor.price }} Ft</div>
+              </div>
+            </a>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="view=='list'">
+    <div class="conatiner">
+      <ng-container *ngFor="let processor of processors">
+        <a routerLink="/processors/{{processor.id}}">
+          <div class="mb-3">
+            <span class="d-table-cell box-shadow align-middle">
+              <span class="d-inline-block mr-2 w-15">
+                <img src="assets/{{processor.imgURL}}" style="border:solid 1px black">
+              </span>
+              <span class="mr-2">{{ processor.cores }}</span>
+              <span class="mr-2">{{ processor.socketType }}</span>
+              <span class="mr-2">{{ processor.manufacturer }}</span>
+              <span class="mr-2">{{ processor.price }} Ft</span>
+            </span>
+          </div>
+        </a>
+      </ng-container>
+    </div>
+  </ng-container>
+
+</ng-container>

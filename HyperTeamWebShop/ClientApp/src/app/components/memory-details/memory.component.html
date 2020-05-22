@@ -1,0 +1,231 @@
+<ng-container *ngIf="memory">
+
+  <!-- Normal -->
+  <ng-container *ngIf="location.path()=='/memories/'+memory.id">
+    <h1 class="text-center" id="tableLabel">Details</h1>
+    <div class="d-flex justify-content-center">
+      <div class="w-75 box-shadow mt-3">
+        <div>
+          <img src="assets/{{memory.imgURL}}">
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text form-text-width">Slot Type: </div>
+          </div>
+          <div class="form-control">{{memory.slotType}}</div>
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text form-text-width">Clock Frequency: </div>
+          </div>
+          <div class="form-control">{{memory.clockFrequency}} MHz</div>
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text form-text-width">Memory Size: </div>
+          </div>
+          <div class="form-control">{{memory.memorySizeInGb}} GB</div>
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text form-text-width">Height: </div>
+          </div>
+          <div class="form-control">{{memory.height}} cm</div>
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text form-text-width">Latecy: </div>
+          </div>
+          <div class="form-control">{{memory.latecy}} ms</div>
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text form-text-width">Manufacturer: </div>
+          </div>
+          <div class="form-control">{{memory.manufacturer}}</div>
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text form-text-width">Type: </div>
+          </div>
+          <div class="form-control">{{memory.type}}</div>
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text form-text-width">Price: </div>
+          </div>
+          <div class="form-control">{{memory.price}} Ft</div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-3">
+      <button class="btn btn-primary mr-2" (click)="goBack()">Back</button>
+      <button class="btn btn-primary mr-2" routerLink="/memories/{{memory.id}}/edit">Edit</button>
+      <button class="btn btn-danger" (click)="deleteMemory()">Delete</button>
+    </div>
+
+    <!-- Compatible section -->
+    <div class="mt-5">
+      <h2>Compatible Motherboards:</h2>
+      <div class="row mt-4">
+        <ng-container *ngFor="let motherboard of memory.compatibleMotherboards">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <a routerLink="/motherboards/{{ motherboard.id }}">
+              <div class="text-center box-shadow mb-3 pb-3">
+                <div>
+                  <img src="assets/{{motherboard.imgURL}}" style="width:100%;height:100%;border:solid 1px black">
+                </div>
+                <div>{{ motherboard.motherBoardSize }}</div>
+                <div>{{ motherboard.socketType }}</div>
+                <div>{{ motherboard.manufacturer }}</div>
+                <div>{{ motherboard.price }} Ft</div>
+              </div>
+            </a>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+  </ng-container>
+
+  <!-- Edit -->
+  <ng-container *ngIf="location.path()=='/memories/'+memory.id+'/edit'">
+    <h1 class="text-center" id="tableLabel">Edit</h1>
+    <div class="d-flex justify-content-center">
+      <div class="w-75 box-shadow mt-3">
+        <div>
+          <img src="assets/{{memory.imgURL}}">
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text form-text-width">Slot Type: </div>
+          </div>
+          <input [(ngModel)]="memory.slotType" class="form-control" #slotType />
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text form-text-width">Clock Frequency: </div>
+          </div>
+          <input [(ngModel)]="memory.clockFrequency" type="number" class="form-control" required #clockFrequency />
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text form-text-width">Memory Size: </div>
+          </div>
+          <input [(ngModel)]="memory.memorySizeInGb" type="number" class="form-control" required #memorySizeInGb />
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text form-text-width">Height: </div>
+          </div>
+          <input [(ngModel)]="memory.height" type="number" class="form-control" required #height />
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text form-text-width">Latecy: </div>
+          </div>
+          <input [(ngModel)]="memory.latecy" type="number" class="form-control" required #latecy />
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text form-text-width">Manufacturer: </div>
+          </div>
+          <input [(ngModel)]="memory.manufacturer" class="form-control" required #manufacturer />
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text form-text-width">Type: </div>
+          </div>
+          <input [(ngModel)]="memory.type" class="form-control" required #manufacturer />
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text form-text-width">ImgURL: </div>
+          </div>
+          <input [(ngModel)]="memory.imgURL" class="form-control" #imgURL />
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text form-text-width">Price: </div>
+          </div>
+          <input [(ngModel)]="memory.price" type="number" class="form-control" required #price />
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-3">
+      <button class="btn btn-primary mr-2" (click)="goBack()">Back</button>
+      <button class="btn btn-success mr-2" (click)="updateMemory()">Save</button>
+    </div>
+  </ng-container>
+
+</ng-container>
+
+<!-- New -->
+<ng-container *ngIf="location.path()=='/memories/new'">
+  <h1 class="text-center" id="tableLabel">Add new Memory</h1>
+  <div class="d-flex justify-content-center">
+    <div class="w-75 box-shadow mt-3">
+      <div>
+        <img src="assets/default.png">
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text form-text-width">Slot Type: </div>
+        </div>
+        <input class="form-control" #slotType />
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text form-text-width">Clock Frequency: </div>
+        </div>
+        <input type="number" class="form-control" required #clockFrequency />
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text form-text-width">Memory Size: </div>
+        </div>
+        <input type="number" class="form-control" required #memorySizeInGb />
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text form-text-width">Height: </div>
+        </div>
+        <input type="number" class="form-control" required #height />
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text form-text-width">Latecy: </div>
+        </div>
+        <input type="number" class="form-control" required #latecy />
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text form-text-width">Manufacturer: </div>
+        </div>
+        <input class="form-control" required #manufacturer />
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text form-text-width">Type: </div>
+        </div>
+        <input class="form-control" required #type />
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text form-text-width">ImgURL: </div>
+        </div>
+        <input class="form-control" #imgURL />
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text form-text-width">Price: </div>
+        </div>
+        <input class="form-control" required #price />
+      </div>
+    </div>
+  </div>
+  <div class="text-center mt-3">
+    <button class="btn btn-primary mr-2" (click)="goBack()">Back</button>
+    <button class="btn btn-success mr-2" (click)="insertMemory(slotType.value,clockFrequency.value,memorySizeInGb.value,height.value,latecy.value,manufacturer.value,type.value,price.value,imgURL.value)">Add Memory</button>
+  </div>
+</ng-container>
