@@ -13,9 +13,9 @@ namespace HyperTeamWebShop.Controllers
     [Route("[controller]")]
     public class MotherboardController : ControllerBase, IProductController<MotherboardDTO>
     {
-        private readonly MotherboardService motherboardService;
+        private readonly IService<MotherboardDTO> motherboardService;
 
-        public MotherboardController(MotherboardService motherboardService) 
+        public MotherboardController(IService<MotherboardDTO> motherboardService) 
         {
             this.motherboardService = motherboardService;
         }

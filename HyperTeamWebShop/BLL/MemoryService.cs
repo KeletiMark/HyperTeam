@@ -1,5 +1,6 @@
 ﻿using HyperTeamWebShop.DAL.DTO;
 using HyperTeamWebShop.DAL.Repositroy;
+using HyperTeamWebShop.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,19 +8,19 @@ using System.Threading.Tasks;
 
 namespace HyperTeamWebShop.BLL
 {
-    public class MemoryService : ServiceBase<MemoryDTO>
+    public class MemoryService : IService<MemoryDTO>
     {
         private MemoryDTO memoryDTO = new MemoryDTO();
-        private readonly MemoryRepository memoryRepository;
-        private readonly MotherboardService motherboardService;
+        private readonly IRepository<Memory> memoryRepository;
+        private readonly IService<MotherboardDTO> motherboardService;
 
-        public MemoryService(MemoryRepository memoryRepository, MotherboardService motherboardService)
+        public MemoryService(IRepository<Memory> memoryRepository, IService<MotherboardDTO> motherboardService)
         {
             this.memoryRepository = memoryRepository;
             this.motherboardService = motherboardService;
         }
 
-        public override IEnumerable<MemoryDTO> GetAll()
+        public IEnumerable<MemoryDTO> GetAll()
         {
             var memories = new List<MemoryDTO>();
             foreach (var memory in memoryRepository.GetAll())
@@ -31,26 +32,26 @@ namespace HyperTeamWebShop.BLL
             return memories;
         }
 
-        public override MemoryDTO GetById(int id)
+        public MemoryDTO GetById(int id)
         {
             memoryDTO = memoryDTO.EntityToDto(memoryRepository.GetById(id));
             SetCompatibleItems();
             return memoryDTO;
         }
 
-        public override int Insert(MemoryDTO memory)
+        public int Insert(MemoryDTO memory)
         {
             memoryRepository.Insert(memoryDTO.DtoToEntity(memory));
             return memory.Id;
         }
 
-        public override int Update(MemoryDTO memory)
+        public int Update(MemoryDTO memory)
         {
             memoryRepository.Update(memoryDTO.DtoToEntity(memory));
             return memory.Id;
         }
 
-        public override void Delete(int id)
+        public void Delete(int id)
         {
             memoryRepository.Delete(id);
         }

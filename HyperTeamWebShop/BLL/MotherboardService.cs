@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 
 namespace HyperTeamWebShop.BLL
 {
-    public class MotherboardService : ServiceBase<MotherboardDTO>
+    public class MotherboardService : IService<MotherboardDTO>
     {
         private MotherboardDTO motherboardDTO = new MotherboardDTO();
-        private readonly MotherboardRepository motherboardRepository;
-        private readonly ProcessorRepository processorRepository;
+        private readonly IRepository<Motherboard> motherboardRepository;
+        private readonly IRepository<Processor> processorRepository;
 
-        public MotherboardService(MotherboardRepository motherboardRepository, ProcessorRepository processorRepository)
+        public MotherboardService(IRepository<Motherboard> motherboardRepository, IRepository<Processor> processorRepository)
         {
             this.motherboardRepository = motherboardRepository;
             this.processorRepository = processorRepository;
         }
 
-        public override IEnumerable<MotherboardDTO> GetAll()
+        public IEnumerable<MotherboardDTO> GetAll()
         {
             var motherboards = new List<MotherboardDTO>();
             foreach (var motherboard in motherboardRepository.GetAll())
@@ -32,26 +32,26 @@ namespace HyperTeamWebShop.BLL
             return motherboards;
         }
 
-        public override MotherboardDTO GetById(int id)
+        public MotherboardDTO GetById(int id)
         {
             motherboardDTO = motherboardDTO.EntityToDto(motherboardRepository.GetById(id));
             SetCompatibleItems();
             return motherboardDTO;
         }
 
-        public override int Insert(MotherboardDTO motherboard)
+        public int Insert(MotherboardDTO motherboard)
         {
             motherboardRepository.Insert(motherboardDTO.DtoToEntity(motherboard));
             return motherboard.Id;
         }
 
-        public override int Update(MotherboardDTO motherboard)
+        public int Update(MotherboardDTO motherboard)
         {
             motherboardRepository.Update(motherboardDTO.DtoToEntity(motherboard));
             return motherboard.Id;
         }
 
-        public override void Delete(int id)
+        public void Delete(int id)
         {
             motherboardRepository.Delete(id);
         }

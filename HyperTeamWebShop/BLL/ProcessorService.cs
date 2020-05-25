@@ -1,7 +1,6 @@
 ﻿using HyperTeamWebShop.DAL.DTO;
 using HyperTeamWebShop.DAL.Repositroy;
 using HyperTeamWebShop.EF;
-using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,19 +8,19 @@ using System.Threading.Tasks;
 
 namespace HyperTeamWebShop.BLL
 {
-    public class ProcessorService : ServiceBase<ProcessorDTO>
+    public class ProcessorService : IService<ProcessorDTO>
     {
         private ProcessorDTO processorDto = new ProcessorDTO();
-        private readonly ProcessorRepository processorRepository;
-        private readonly MotherboardService motherboardService;
+        private readonly IRepository<Processor> processorRepository;
+        private readonly IService<MotherboardDTO> motherboardService;
 
-        public ProcessorService(ProcessorRepository processorRepository, MotherboardService motherboardService) 
+        public ProcessorService(IRepository<Processor> processorRepository, IService<MotherboardDTO> motherboardService) 
         {
             this.processorRepository = processorRepository;
             this.motherboardService = motherboardService;
         }
 
-        public override IEnumerable<ProcessorDTO> GetAll() 
+        public IEnumerable<ProcessorDTO> GetAll() 
         {
             var processors = new List<ProcessorDTO>();
             foreach (var processor in processorRepository.GetAll())
@@ -33,26 +32,26 @@ namespace HyperTeamWebShop.BLL
             return processors;
         }
 
-        public override ProcessorDTO GetById(int id) 
+        public ProcessorDTO GetById(int id) 
         {
             processorDto = processorDto.EntityToDto(processorRepository.GetById(id));
             SetCompatibleItems();
             return processorDto;
         }
 
-        public override int Insert(ProcessorDTO processor)
+        public int Insert(ProcessorDTO processor)
         {
             processorRepository.Insert(processorDto.DtoToEntity(processor));
             return processor.Id;
         }
 
-        public override int Update(ProcessorDTO processor)
+        public int Update(ProcessorDTO processor)
         {
             processorRepository.Update(processorDto.DtoToEntity(processor));
             return processor.Id;
         }
 
-        public override void Delete(int id)
+        public void Delete(int id)
         {
             processorRepository.Delete(id);
         }

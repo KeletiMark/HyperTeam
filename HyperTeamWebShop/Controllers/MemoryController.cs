@@ -13,9 +13,9 @@ namespace HyperTeamWebShop.Controllers
     [Route("[controller]")]
     public class MemoryController : ControllerBase, IProductController<MemoryDTO>
     {
-        private readonly MemoryService memoryService;
+        private readonly IService<MemoryDTO> memoryService;
 
-        public MemoryController(MemoryService memoryService) 
+        public MemoryController(IService<MemoryDTO> memoryService) 
         {
             this.memoryService = memoryService;
         }
