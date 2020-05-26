@@ -1,4 +1,5 @@
 import { Processor } from "./processor";
+import { Memory } from "./memory";
 
 export interface Motherboard {
   id: number;
@@ -8,6 +9,7 @@ export interface Motherboard {
   wifiAdapter: boolean;
   motherBoardSize: string;
   compatibleProcessors: Processor[];
+  compatibleMemories: Memory[];
   manufacturer: string;
   type: string;
   imgURL: string;

@@ -8,10 +8,10 @@ namespace HyperTeamWebShop.Controllers
 {
     interface IProductController<TDto> where TDto : class
     {
-        public abstract ActionResult<IEnumerable<TDto>> GetAll();
-        public abstract ActionResult<TDto> GetById(int id);
-        public abstract ActionResult<int> Insert(TDto dto);
-        public abstract ActionResult<int> Update(TDto dto);
-        public abstract ActionResult Delete(int id);
+        public ActionResult<IEnumerable<TDto>> GetAll();
+        public ActionResult<TDto> GetById(int id);
+        public ActionResult<int> Insert(TDto dto);
+        public ActionResult<int> Update(TDto dto);
+        public ActionResult Delete(int id);
     }
 }

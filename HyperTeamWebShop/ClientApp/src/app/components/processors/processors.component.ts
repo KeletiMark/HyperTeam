@@ -12,7 +12,7 @@ import { ProcessorService } from '../../services/processor.service';
 })
 export class ProcessorsComponent implements OnInit{
   public processors: Processor[] = [];
-  private view: string = "card";
+  private view: string = "list";
 
   constructor(private processorService: ProcessorService) { }
 

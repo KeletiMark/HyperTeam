@@ -86,6 +86,30 @@
       </div>
     </div>
 
+    <div class="mt-5">
+      <h2>Compatible Memories:</h2>
+      <div class="row mt-4">
+        <ng-container *ngFor="let memory of motherboard.compatibleMemories">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <a routerLink="/memories/{{ memory.id }}">
+              <div class="text-center box-shadow mb-3 pb-3">
+                <div>
+                  <img src="assets/{{memory.imgURL}}" style="width:100%;height:100%;border:solid 1px black">
+                </div>
+                <div>{{ memory.clockFrequency }} MHz</div>
+                <div>{{ memory.slotType }}</div>
+                <div>{{ memory.manufacturer }}</div>
+                <div>{{ memory.type }}</div>
+                <div>{{ memory.price }} Ft</div>
+                <div class="mt-2">
+                </div>
+              </div>
+            </a>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
   </ng-container>
 
 

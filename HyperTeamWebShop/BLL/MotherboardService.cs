@@ -13,11 +13,13 @@ namespace HyperTeamWebShop.BLL
         private MotherboardDTO motherboardDTO = new MotherboardDTO();
         private readonly IRepository<Motherboard> motherboardRepository;
         private readonly IRepository<Processor> processorRepository;
+        private readonly IRepository<Memory> memoryRepository;
 
-        public MotherboardService(IRepository<Motherboard> motherboardRepository, IRepository<Processor> processorRepository)
+        public MotherboardService(IRepository<Motherboard> motherboardRepository, IRepository<Processor> processorRepository, IRepository<Memory> memoryRepository)
         {
             this.motherboardRepository = motherboardRepository;
             this.processorRepository = processorRepository;
+            this.memoryRepository = memoryRepository;
         }
 
         public IEnumerable<MotherboardDTO> GetAll()
@@ -59,6 +61,7 @@ namespace HyperTeamWebShop.BLL
         private void SetCompatibleItems()
         {
             motherboardDTO.CompatibleProcessors = FindCompatibleProcessor();
+            motherboardDTO.CompatibleMemories = FindCompatibleMemories();
         }
 
         private IEnumerable<ProcessorDTO> FindCompatibleProcessor()
@@ -70,6 +73,17 @@ namespace HyperTeamWebShop.BLL
                 processorDTOs.Add(processorDTO.EntityToDto(processor));
             }
             return processorDTOs.Where(p => p.SocketType == motherboardDTO.SocketType);
+        }
+
+        private IEnumerable<MemoryDTO> FindCompatibleMemories() 
+        {
+            List<MemoryDTO> memoryDTOs = new List<MemoryDTO>();
+            var processorDTO = new MemoryDTO();
+            foreach (var memory in memoryRepository.GetAll())
+            {
+                memoryDTOs.Add(processorDTO.EntityToDto(memory));
+            }
+            return memoryDTOs.Where(p => p.SlotType == motherboardDTO.SlotType);
         }
 
     }

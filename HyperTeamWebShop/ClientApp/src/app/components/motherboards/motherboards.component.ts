@@ -12,7 +12,7 @@ import { MotherboardService } from '../../services/motherboard.service';
 })
 export class MotherboardsComponent implements OnInit {
   public motherboards: Motherboard[] = [];
-  private view: string = "card";
+  private view: string = "list";
 
   constructor(private motherboardService: MotherboardService) { }
 
