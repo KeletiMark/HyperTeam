@@ -13,9 +13,9 @@ namespace HyperTeamWebShop.Controllers
     [Route("[controller]")]
     public class ProcessorController : ControllerBase, IProductController<ProcessorDTO>
     {
-        private readonly ProcessorService processorService;
+        private readonly IService<ProcessorDTO> processorService;
 
-        public ProcessorController(ProcessorService processorService)
+        public ProcessorController(IService<ProcessorDTO> processorService)
         {
             this.processorService = processorService;
         }

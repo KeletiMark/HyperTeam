@@ -12,7 +12,7 @@ import { MemoryService } from '../../services/memory.service';
 })
 export class MemoriesComponent implements OnInit{
   public memories: Memory[] = [];
-  private view: string = "card";
+  private view: string = "list";
 
   constructor(private memoryService: MemoryService) { }
 

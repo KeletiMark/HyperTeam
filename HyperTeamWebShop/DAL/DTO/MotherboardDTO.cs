@@ -18,6 +18,7 @@ namespace HyperTeamWebShop.DAL.DTO
         public string MotherBoardSize { get; set; }
 
         public IEnumerable<ProcessorDTO> CompatibleProcessors { get; set; }
+        public IEnumerable<MemoryDTO> CompatibleMemories { get; set; }
 
         public override MotherboardDTO EntityToDto(Motherboard motherboard)
         {

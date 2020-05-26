@@ -1,4 +1,5 @@
 using HyperTeamWebShop.BLL;
+using HyperTeamWebShop.DAL.DTO;
 using HyperTeamWebShop.DAL.Repositroy;
 using HyperTeamWebShop.EF;
 using Microsoft.AspNetCore.Builder;
@@ -30,12 +31,12 @@ namespace HyperTeamWebShop
                 configuration.RootPath = "ClientApp/dist";
             });
             services.AddSingleton<ShopContext>();
-            services.AddSingleton<ProcessorRepository>();
-            services.AddSingleton<ProcessorService>();
-            services.AddSingleton<MotherboardRepository>();
-            services.AddSingleton<MotherboardService>();
-            services.AddSingleton<MemoryRepository>();
-            services.AddSingleton<MemoryService>();
+            services.AddSingleton<IRepository<Processor>, ProcessorRepository>();
+            services.AddSingleton<IService<ProcessorDTO>,ProcessorService>();
+            services.AddSingleton<IRepository<Motherboard>, MotherboardRepository>();
+            services.AddSingleton<IService<MotherboardDTO>,MotherboardService>();
+            services.AddSingleton<IRepository<Memory>,MemoryRepository >();
+            services.AddSingleton<IService<MemoryDTO>,MemoryService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
