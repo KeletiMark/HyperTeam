@@ -13,7 +13,7 @@ import { ProcessorsComponent } from '../processors/processors.component';
 export class ProcessorComponent implements OnInit {
   @Input() processor: Processor
   newProcessor: Processor
-  socketTypes = ['AM3', 'AM4', 'FM2', 'LGA1050', 'LG1051'];
+  socketTypes = ['AM3', 'AM4', 'FM2', 'LGA1050', 'LGA1051'];
 
   constructor(
     private processorService: ProcessorService,
