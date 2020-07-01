@@ -27,9 +27,9 @@ namespace HyperTeamWebShop.Controllers
             {
                 return Ok(memoryService.GetAll());
             }
-            catch
+            catch (Exception e)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
@@ -41,9 +41,9 @@ namespace HyperTeamWebShop.Controllers
             {
                 return Ok(memoryService.GetById(id));
             }
-            catch
+            catch (Exception e)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
@@ -55,9 +55,9 @@ namespace HyperTeamWebShop.Controllers
                 memoryService.Insert(memory);
                 return Ok(memory.Id);
             }
-            catch
+            catch (Exception e)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
@@ -69,9 +69,9 @@ namespace HyperTeamWebShop.Controllers
                 memoryService.Update(memory);
                 return Ok(memory.Id);
             }
-            catch
+            catch (Exception e)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
 
         }
@@ -85,9 +85,9 @@ namespace HyperTeamWebShop.Controllers
                 memoryService.Delete(id);
                 return Ok();
             }
-            catch 
+            catch (Exception e)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
     }

@@ -27,9 +27,9 @@ namespace HyperTeamWebShop.Controllers
             {
                 return Ok(motherboardService.GetAll());
             }
-            catch
+            catch (Exception e)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
 
         }
@@ -42,9 +42,9 @@ namespace HyperTeamWebShop.Controllers
             {
                 return Ok(motherboardService.GetById(id));
             }
-            catch
+            catch (Exception e)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
@@ -56,9 +56,9 @@ namespace HyperTeamWebShop.Controllers
                 motherboardService.Insert(motherboard);
                 return Ok(motherboard.Id);
             }
-            catch
+            catch (Exception e)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
@@ -70,9 +70,9 @@ namespace HyperTeamWebShop.Controllers
                 motherboardService.Update(motherboard);
                 return Ok(motherboard.Id);
             }
-            catch
+            catch (Exception e)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
@@ -85,9 +85,9 @@ namespace HyperTeamWebShop.Controllers
                 motherboardService.Delete(id);
                 return Ok();
             }
-            catch
+            catch (Exception e)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 

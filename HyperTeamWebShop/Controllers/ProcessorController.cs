@@ -27,9 +27,9 @@ namespace HyperTeamWebShop.Controllers
             {
                 return Ok(processorService.GetAll());
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
@@ -41,9 +41,9 @@ namespace HyperTeamWebShop.Controllers
             {
                 return Ok(processorService.GetById(id));
             }
-            catch 
+            catch (Exception e)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
@@ -55,9 +55,9 @@ namespace HyperTeamWebShop.Controllers
                 processorService.Insert(processor);
                 return Ok(processor.Id);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
@@ -69,9 +69,9 @@ namespace HyperTeamWebShop.Controllers
                 processorService.Update(processor);
                 return Ok(processor.Id);
             }
-            catch
+            catch (Exception e)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
 
         }
@@ -85,9 +85,9 @@ namespace HyperTeamWebShop.Controllers
                 processorService.Delete(id);
                 return Ok();
             }
-            catch 
+            catch (Exception e)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
     }
