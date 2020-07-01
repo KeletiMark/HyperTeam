@@ -125,13 +125,17 @@
           <div class="input-group-prepend">
             <div class="input-group-text form-text-width">Socket Type: </div>
           </div>
-          <input [(ngModel)]="motherboard.socketType" class="form-control"/>
+            <select [(ngModel)]="motherboard.socketType" class="form-control" required>
+              <option *ngFor="let socketType of socketTypes" [value]="socketType">{{socketType}}</option>
+            </select>
         </div>
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text form-text-width">Slot Type: </div>
           </div>
-          <input [(ngModel)]="motherboard.slotType" class="form-control" required/>
+            <select [(ngModel)]="motherboard.slotType" class="form-control" required>
+              <option *ngFor="let slotType of slotTypes" [value]="slotType">{{slotType}}</option>
+            </select>
         </div>
         <div class="input-group">
           <div class="input-group-prepend">
@@ -149,7 +153,9 @@
           <div class="input-group-prepend">
             <div class="input-group-text form-text-width">Motherboard Size: </div>
           </div>
-          <input [(ngModel)]="motherboard.motherBoardSize" class="form-control" required/>
+            <select [(ngModel)]="motherboard.motherBoardSize" class="form-control" required>
+              <option *ngFor="let motherBoardSize of motherBoardSizes" [value]="motherBoardSize">{{motherBoardSize}}</option>
+            </select>
         </div>
         <div class="input-group">
           <div class="input-group-prepend">
@@ -197,13 +203,17 @@
         <div class="input-group-prepend">
           <div class="input-group-text form-text-width">Socket Type: </div>
         </div>
-        <input class="form-control" required #socketType />
+          <select class="form-control" required #socketType>
+            <option *ngFor="let socketType of socketTypes" [value]="socketType">{{socketType}}</option>
+          </select>
       </div>
       <div class="input-group">
         <div class="input-group-prepend">
           <div class="input-group-text form-text-width">Slot Type: </div>
         </div>
-        <input class="form-control" required  #slotType />
+          <select class="form-control" required #slotType>
+            <option *ngFor="let slotType of slotTypes" [value]="slotType">{{slotType}}</option>
+          </select>
       </div>
       <div class="input-group">
         <div class="input-group-prepend">
@@ -221,7 +231,9 @@
         <div class="input-group-prepend">
           <div class="input-group-text form-text-width">Motherboard Size: </div>
         </div>
-        <input class="form-control" required #motherBoardSize />
+          <select class="form-control" required #motherBoardSize>
+            <option *ngFor="let motherBoardSize of motherBoardSizes" [value]="motherBoardSize">{{motherBoardSize}}</option>
+          </select>
       </div>
       <div class="input-group">
         <div class="input-group-prepend">

@@ -13,6 +13,7 @@ import { MemoriesComponent } from '../memories/memories.component'
 export class MemoryComponent implements OnInit {
   @Input() memory: Memory
   newMemory: Memory
+  slotTypes = ['DDR3','DDR4'];
 
   constructor(
     private memoryService: MemoryService,

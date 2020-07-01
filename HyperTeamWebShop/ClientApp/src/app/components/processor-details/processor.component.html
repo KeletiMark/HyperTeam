@@ -101,7 +101,9 @@
           <div class="input-group-prepend">
             <div class="input-group-text form-text-width">Socket Type: </div>
           </div>
-          <input [(ngModel)]="processor.socketType" class="form-control" />
+          <select [(ngModel)]="processor.socketType" class="form-control" required>
+            <option *ngFor="let socketType of socketTypes" [value]="socketType">{{socketType}}</option>
+          </select>
         </div>
         <div class="input-group">
           <div class="input-group-prepend">
@@ -173,13 +175,15 @@
         <div class="input-group-prepend">
           <div class="input-group-text form-text-width">Socket Type: </div>
         </div>
-        <input class="form-control" required #socketType />
+        <select class="form-control" required #socketType>
+          <option *ngFor="let socketType of socketTypes" [value]="socketType">{{socketType}}</option>
+        </select>
       </div>
       <div class="input-group">
         <div class="input-group-prepend">
           <div class="input-group-text form-text-width">Cores: </div>
         </div>
-        <input class="form-control" required  #cores />
+        <input class="form-control" required #cores />
       </div>
       <div class="input-group">
         <div class="input-group-prepend">

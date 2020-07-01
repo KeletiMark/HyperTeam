@@ -13,6 +13,9 @@ import { Motherboard } from '../../models/motherboard';
 export class MotherboardComponent implements OnInit {
   @Input() motherboard: Motherboard
   newMotherboard: Motherboard
+  slotTypes = ['DDR3', 'DDR4'];
+  socketTypes = ['AM3', 'AM4', 'FM2', 'LGA1050', 'LG1051'];
+  motherBoardSizes = ['mITX', 'mATX', 'ATX', 'eATX'];
 
   constructor(
     private motherboardService: MotherboardService,

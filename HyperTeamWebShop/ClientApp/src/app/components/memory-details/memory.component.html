@@ -100,7 +100,9 @@
           <div class="input-group-prepend">
             <div class="input-group-text form-text-width">Slot Type: </div>
           </div>
-          <input [(ngModel)]="memory.slotType" class="form-control" #slotType />
+            <select [(ngModel)]="memory.slotType" class="form-control" required #slotType>
+              <option *ngFor="let slotType of slotTypes" [value]="slotType">{{slotType}}</option>
+            </select>
         </div>
         <div class="input-group">
           <div class="input-group-prepend">
@@ -172,7 +174,9 @@
         <div class="input-group-prepend">
           <div class="input-group-text form-text-width">Slot Type: </div>
         </div>
-        <input class="form-control" #slotType />
+          <select class="form-control" required #slotType>
+            <option *ngFor="let slotType of slotTypes" [value]="slotType">{{slotType}}</option>
+          </select>
       </div>
       <div class="input-group">
         <div class="input-group-prepend">
