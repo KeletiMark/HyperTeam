@@ -5,8 +5,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
+import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
+import { HomeComponent } from './components/home/home.component';
 import { ProcessorsComponent } from './components/processors/processors.component';
 import { ProcessorComponent } from './components/processor-details/processor.component';
 import { MotherboardsComponent } from './components/motherboards/motherboards.component';

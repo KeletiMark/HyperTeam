@@ -96,62 +96,115 @@
         <div>
           <img src="assets/{{memory.imgURL}}">
         </div>
+
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text form-text-width">Slot Type: </div>
           </div>
-            <select [(ngModel)]="memory.slotType" class="form-control" required #slotType>
-              <option *ngFor="let slotType of slotTypes" [value]="slotType">{{slotType}}</option>
-            </select>
+          <select [(ngModel)]="memory.slotType" class="form-control" required #slotType>
+            <option *ngFor="let slotType of slotTypes" [value]="slotType">{{slotType}}</option>
+          </select>
         </div>
+
+        <!-- Az egyes input groupokat érdemes lenne kiszervezni külön kömponensbe -->
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text form-text-width">Clock Frequency: </div>
           </div>
-          <input [(ngModel)]="memory.clockFrequency" type="number" class="form-control" required #clockFrequency />
+          <input type="number" class="form-control" id="clockFrequency"
+                 required
+                 [(ngModel)]="memory.clockFrequency" name="clockFrequency" #clockFrequency="ngModel" />
         </div>
+        <div [hidden]="clockFrequency.valid || clockFrequency.pristine"
+             class="alert alert-danger">
+          clockFrequency is required
+        </div>
+
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text form-text-width">Memory Size: </div>
           </div>
-          <input [(ngModel)]="memory.memorySizeInGb" type="number" class="form-control" required #memorySizeInGb />
+          <input type="number" class="form-control" id="memorySizeInGb"
+                 required
+                 [(ngModel)]="memory.memorySizeInGb" name="memorySizeInGb" #memorySizeInGb="ngModel" />
         </div>
+        <div [hidden]="memorySizeInGb.valid || memorySizeInGb.pristine"
+             class="alert alert-danger">
+          memorySizeInGb is required
+        </div>
+
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text form-text-width">Height: </div>
           </div>
-          <input [(ngModel)]="memory.height" type="number" class="form-control" required #height />
+          <input type="number" class="form-control" id="height"
+                 required
+                 [(ngModel)]="memory.height" name="height" #height="ngModel" />
         </div>
+        <div [hidden]="height.valid || height.pristine"
+             class="alert alert-danger">
+          height is required
+        </div>
+
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text form-text-width">Latecy: </div>
           </div>
-          <input [(ngModel)]="memory.latecy" type="number" class="form-control" required #latecy />
+          <input type="number" class="form-control"  id="latecy"
+                 required
+                 [(ngModel)]="memory.latecy" name="latecy" #latecy="ngModel" />
         </div>
+        <div [hidden]="latecy.valid || latecy.pristine"
+             class="alert alert-danger">
+          latecy is required
+        </div>
+
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text form-text-width">Manufacturer: </div>
           </div>
-          <input [(ngModel)]="memory.manufacturer" class="form-control" required #manufacturer />
+          <input class="form-control" id="manfacturer"
+                 required
+                 [(ngModel)]="memory.manufacturer" name="manufacturer" #manufacturer="ngModel" />
         </div>
+        <div [hidden]="manufacturer.valid || manufacturer.pristine"
+             class="alert alert-danger">
+          manufacturer is required
+        </div>
+
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text form-text-width">Type: </div>
           </div>
-          <input [(ngModel)]="memory.type" class="form-control" required #manufacturer />
+          <input class="form-control" id="type"
+                 required
+                 [(ngModel)]="memory.type" name="type" #type="ngModel" />
         </div>
+        <div [hidden]="type.valid || type.pristine"
+             class="alert alert-danger">
+          type is required
+        </div>
+
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text form-text-width">ImgURL: </div>
           </div>
           <input [(ngModel)]="memory.imgURL" class="form-control" #imgURL />
         </div>
+
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text form-text-width">Price: </div>
           </div>
-          <input [(ngModel)]="memory.price" type="number" class="form-control" required #price />
+          <input type="number" class="form-control" id="price"
+                 required
+                 [(ngModel)]="memory.price" name="priece" #price="ngModel" />
         </div>
+        <div [hidden]="price.valid || price.pristine"
+             class="alert alert-danger">
+          price is required
+        </div>
+
       </div>
     </div>
     <div class="text-center mt-3">
@@ -174,7 +227,7 @@
         <div class="input-group-prepend">
           <div class="input-group-text form-text-width">Slot Type: </div>
         </div>
-          <select class="form-control" required #slotType>
+          <select class="form-control required" required #slotType>
             <option *ngFor="let slotType of slotTypes" [value]="slotType">{{slotType}}</option>
           </select>
       </div>
